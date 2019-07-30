@@ -1,42 +1,25 @@
-import {AccountStorageRepository, AccountStorageRepositoryInterface} from "../repository/AccountStorageRepository";
 import {User} from "../../domain/model/User";
 
 export class Authentication {
 
-    private static repository: AccountStorageRepositoryInterface
+    private static repository: Storage
 
     constructor() {
     }
 
     static isAuthenticated(): boolean {
-        let account
-        if (this.repository) {
-            account = this.repository.get()
-            return account !== null
-        }
-
-        this.setRepository()
-        account = this.repository.get()
-        return !!account;
-
+        return !!this.retrieveUser()
     }
 
     static retrieveUser(): User | null {
-        if (!this.repository) {
-            this.setRepository()
-        }
-        return this.repository.get()
+        const user = JSON.parse(this.getRepository().getItem('user'))
+        return new User(user.id, user.name)
     }
 
-    static setRepository() {
-        let account
-        const sessionStorageRepository = new AccountStorageRepository(false);
-        account = sessionStorageRepository.get()
-        if (account) {
-            this.repository = sessionStorageRepository
-            return
+    static getRepository(): Storage {
+        if (this.repository) {
+            return this.repository
         }
-
-        this.repository = new AccountStorageRepository(true)
+        this.repository = localStorage
     }
 }

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 
-import {Index} from './components/pages/Index'
+import {Index} from './components/pages'
 
 import {Authentication} from './app/auth/Authentication'
 
