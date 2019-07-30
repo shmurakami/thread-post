@@ -13,13 +13,21 @@ export class Authentication {
 
     static retrieveUser(): User | null {
         const user = JSON.parse(this.getRepository().getItem('user'))
-        return new User(user.id, user.name)
+        if (user) {
+            return new User(user.id, user.name)
+        }
+        return null
     }
 
     static getRepository(): Storage {
-        if (this.repository) {
-            return this.repository
+        if (!this.repository) {
+            this.repository = localStorage
         }
-        this.repository = localStorage
+        return this.repository
+    }
+
+    static authAsDummy(): boolean {
+        this.getRepository().setItem('user', JSON.stringify(new User(1, 'test').toStoreObject()))
+        return true
     }
 }

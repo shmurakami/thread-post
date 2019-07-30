@@ -4,9 +4,11 @@ import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 import {Index} from './components/pages'
 
 import {Authentication} from './app/auth/Authentication'
+import {Login} from "./components/pages/Login";
 
 const routes = <div>
-    <Route exact path="/" component={Index}/>
+    <ProtectedRoute exact path="/" component={Index}/>
+    <Route exact path="/login" component={Login}/>
 </div>
 
 export class App extends React.Component<any, any> {
