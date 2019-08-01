@@ -16,6 +16,7 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
             return [
                 {id: 1, name: 'thread1'},
                 {id: 2, name: 'thread2'},
+                {id: 3, name: 'thread3'},
             ]
         }
         return []
@@ -23,8 +24,13 @@ export class Sidebar extends React.Component<SidebarProps, SidebarState> {
 
     render(): React.ReactNode {
         const threads = this.getThreads().map(thread => {
-            <li key={thread.id} className="nav-item">
-                <a className="nav-link justify-content-between active" href="#">{thread.name}</a>
+            let classes = "nav-link justify-content-between"
+            if (thread.id === 1) {
+                classes = `${classes} active`
+            }
+
+            return <li key={thread.id} className="nav-item">
+                <a className={classes} href="#">{thread.name}</a>
             </li>
         })
 
