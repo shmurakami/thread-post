@@ -27,7 +27,7 @@ export class Authentication {
     }
 
     static authAsDummy(): boolean {
-        this.getRepository().setItem('user', JSON.stringify(new User(1, 'test').toStoreObject()))
+        this.getRepository().setItem('user', JSON.stringify(new User('1', 'test').toStoreObject()))
         return true
     }
 }

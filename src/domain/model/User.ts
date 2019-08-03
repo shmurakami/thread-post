@@ -1,5 +1,5 @@
 export class User {
-    constructor(private id: number, private name: string) {
+    constructor(private id: string, private name: string) {
     }
 
     toStoreObject() {
