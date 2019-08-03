@@ -1,7 +1,7 @@
 import axios, {AxiosPromise, AxiosRequestConfig} from 'axios'
 
 // const apiHost = '127.0.0.1:80'
-const apiHost = ''
+const apiHost = 'https://b66fc602-1a8e-49da-89ae-5f1f38ac2bf7.mock.pstmn.io'
 
 class HttpRequest {
     constructor() {
